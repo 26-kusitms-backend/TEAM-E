@@ -11,15 +11,15 @@ public enum ConnectionUtil {
 
     private HikariDataSource ds;
 
-    ConnectionUtil(){
+    ConnectionUtil()  {
         HikariConfig config = new HikariConfig();
         config.setDriverClassName("org.mariadb.jdbc.Driver");
-        config.setJdbcUrl("jdbc:mariadb://localhost:3307/webdb");
+        config.setJdbcUrl("jdbc:mariadb://localhost:3306/webdb");
         config.setUsername("webuser");
         config.setPassword("webuser");
-        config.addDataSourceProperty("cachePrepStmts","true");
-        config.addDataSourceProperty("prepStmtCacheSize","250");
-        config.addDataSourceProperty("prepStmtCacheSqlLimit","2048");
+        config.addDataSourceProperty("cachePrepStmts", "true");
+        config.addDataSourceProperty("prepStmtCacheSize", "250");
+        config.addDataSourceProperty("prepStmtCacheSqlLimit", "2048");
 
         ds = new HikariDataSource(config);
     }
@@ -27,4 +27,5 @@ public enum ConnectionUtil {
     public Connection getConnection()throws Exception {
         return ds.getConnection();
     }
+
 }

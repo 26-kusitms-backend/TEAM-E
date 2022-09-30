@@ -11,10 +11,7 @@
     <title>Title</title>
 
     <form action="/todo/register" method="post">
-        <input type="text" name="todoList" placeholder="INSERT TITLE">
-        <input type="date" name="startday">
-        <button type="reset">RESET</button>
-        <button type="submit">REGISTER</button>
+        <button type="submit">등록처리</button>
     </form>
 
 </head>

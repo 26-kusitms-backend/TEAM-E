@@ -1,53 +1,44 @@
 package org.zerock.demo.todo.dto;
 
-import java.time.LocalDate;
+import lombok.Cleanup;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 public class TodoDTO {
 
-    private Long tno;
-    private String title;
-    private LocalDate dueDate;
-    private boolean finished;
+    public String getTime(){
+        String now=null;
 
-    public Long getTno() {
-        return tno;
+        try( Connection connection = ConnectionUtil.INSTANCE.getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement("select now()");
+        ResultSet resultSet = preparedStatement.executeQuery();
+        ) {
+            resultSet.next();
+
+            now = resultSet.getString(1);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+        return now;
     }
 
-    public void setTno(Long tno) {
-        this.tno = tno;
+    public String getTime2() throws Exception{
+
+        @Cleanup Connection connection = ConnectionUtil.INSTANCE.getConnection();
+        @Cleanup PreparedStatement preparedStatement = connection.prepareStatement("select now()");
+
+        @Cleanup ResultSet resultSet = preparedStatement.executeQuery();
+
+        resultSet.next();
+
+        String now = resultSet.getString(1);
+
+        return now;
+
     }
 
-    public String getTitle() {
-        return title;
-    }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public LocalDate getDueDate() {
-        return dueDate;
-    }
-
-    public void setDueDate(LocalDate dueDate) {
-        this.dueDate = dueDate;
-    }
-
-    public boolean isFinished() {
-        return finished;
-    }
-
-    public void setFinished(boolean finished) {
-        this.finished = finished;
-    }
-
-    @Override
-    public String toString() {
-        return "TodoDTO{" +
-                "tno=" + tno +
-                ", title='" + title + '\'' +
-                ", dueDate=" + dueDate +
-                ", finished=" + finished +
-                '}';
-    }
 }

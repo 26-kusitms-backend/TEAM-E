@@ -17,6 +17,7 @@ public enum TodoService {
     }
 
     public List<TodoDTO> getList() {
+
         List<TodoDTO> todoDTOS = IntStream.range(0,10).mapToObj(i-> {
             TodoDTO dto = new TodoDTO();
             dto.setTno((long)i);

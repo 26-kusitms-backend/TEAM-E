@@ -14,6 +14,7 @@ import java.util.List;
 
 @WebServlet(name="ToDoListController", urlPatterns = "/todo/list")
 public class ToDoListController extends HttpServlet {
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws
             ServletException, IOException {

@@ -20,6 +20,8 @@ public class ToDoRegisterController extends HttpServlet {
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws
             ServletException, IOException {
+
+
         RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/todo/register.jsp");
 
         dispatcher.forward(req,resp);
